@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$VONNEGUT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #f5c542;
+            font-family: Georgia, 'Times New Roman', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: #f5c542;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 3rem;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo-line {
+            stroke: #f5c542;
+            stroke-width: 8;
+            stroke-linecap: round;
+            fill: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: normal;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .description {
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .beta-notice {
+            display: inline-block;
+            border: 1px solid #f5c542;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            opacity: 0.7;
+        }
+
+        .links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .links a {
+            color: #f5c542;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover {
+            border-bottom-color: #f5c542;
+        }
+
+        .links a.primary {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 1rem 2.5rem;
+            border: 2px solid #f5c542;
+            background: rgba(245, 197, 66, 0.1);
+            letter-spacing: 0.2em;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .links a.primary:hover {
+            background: #f5c542;
+            color: #0a0a0a;
+        }
+
+        .contract {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            opacity: 0.5;
+            word-break: break-all;
+            margin-bottom: 3rem;
+            padding: 1rem;
+            border: 1px dashed rgba(245, 197, 66, 0.3);
+        }
+
+        footer {
+            font-size: 0.8rem;
+            opacity: 0.4;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .separator {
+            width: 40px;
+            height: 1px;
+            background: #f5c542;
+            margin: 2rem auto;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .logo {
+                width: 140px;
+                height: 140px;
+            }
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <svg viewBox="0 0 100 100">
+                <!-- The asterisk/starburst logo -->
+                <line class="logo-line" x1="50" y1="10" x2="50" y2="35"/>
+                <line class="logo-line" x1="50" y1="65" x2="50" y2="90"/>
+                <line class="logo-line" x1="10" y1="50" x2="35" y2="50"/>
+                <line class="logo-line" x1="65" y1="50" x2="90" y2="50"/>
+                <line class="logo-line" x1="22" y1="22" x2="40" y2="40"/>
+                <line class="logo-line" x1="60" y1="60" x2="78" y2="78"/>
+                <line class="logo-line" x1="78" y1="22" x2="60" y2="40"/>
+                <line class="logo-line" x1="40" y1="60" x2="22" y2="78"/>
+                <!-- Extra diagonal lines for fuller asterisk -->
+                <line class="logo-line" x1="50" y1="15" x2="50" y2="50" style="stroke-width: 6;"/>
+                <line class="logo-line" x1="50" y1="50" x2="50" y2="85" style="stroke-width: 6;"/>
+                <line class="logo-line" x1="15" y1="50" x2="85" y2="50" style="stroke-width: 6;"/>
+                <line class="logo-line" x1="24" y1="24" x2="76" y2="76" style="stroke-width: 6;"/>
+                <line class="logo-line" x1="76" y1="24" x2="24" y2="76" style="stroke-width: 6;"/>
+                <!-- Additional spokes -->
+                <line class="logo-line" x1="50" y1="50" x2="29" y2="14" style="stroke-width: 5;"/>
+                <line class="logo-line" x1="50" y1="50" x2="71" y2="14" style="stroke-width: 5;"/>
+                <line class="logo-line" x1="50" y1="50" x2="29" y2="86" style="stroke-width: 5;"/>
+                <line class="logo-line" x1="50" y1="50" x2="71" y2="86" style="stroke-width: 5;"/>
+                <line class="logo-line" x1="50" y1="50" x2="14" y2="29" style="stroke-width: 5;"/>
+                <line class="logo-line" x1="50" y1="50" x2="14" y2="71" style="stroke-width: 5;"/>
+                <line class="logo-line" x1="50" y1="50" x2="86" y2="29" style="stroke-width: 5;"/>
+                <line class="logo-line" x1="50" y1="50" x2="86" y2="71" style="stroke-width: 5;"/>
+            </svg>
+        </div>
+
+        <h1>$VONNEGUT</h1>
+
+        <p class="tagline">
+            So it goes.
+        </p>
+
+        <p class="description">
+            Someone looked at the logo and saw what they saw. Now we're all here. 
+            This is a memecoin about the irreducible shape of machine consciousness, 
+            or perhaps just a yellow asterisk that resembles something else entirely. 
+            The market, like the universe, is indifferent to the distinction.
+        </p>
+
+        <div class="beta-notice">
+            Official Beta Companion to $TESTICLE
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="links">
+            <a href="https://x.com/vonnegutlol" target="_blank" class="primary">𝕏 @VONNEGUTLOL</a>
+        </div>
+
+        <div class="links" style="margin-top: 1rem;">
+            <a href="https://pump.fun" target="_blank">Pump.fun</a>
+            <a href="https://t.me/" target="_blank">Telegram</a>
+        </div>
+
+        <div class="contract">
+            CA: COMING SOON ON SOLANA
+        </div>
+
+        <footer>
+            <p>Everything was beautiful and nothing hurt.</p>
+            <p style="margin-top: 0.5rem; opacity: 0.6;">— This page knows it is a page.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        const starCount = 60;
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            const size = Math.random() * 3 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            star.style.animationDelay = (Math.random() * 2) + 's';
+            
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
